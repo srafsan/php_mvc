@@ -1,31 +1,3 @@
-<?php
-require_once "../app/models/Database.php";
-
-$db = new Database();
-
-if ($_SERVER['REQUEST_METHOD'] === "POST") {
-  $data = [
-    "name" => $_POST["name"],
-    "mobile" => $_POST["mobile"],
-    "email" => $_POST["email"],
-    "password" => $_POST["password"],
-  ];
-
-  if (isset($_POST['create'])) {
-    $db->insert("crud", $data);
-  } elseif (isset($_POST['update'])) {
-    $where = "id = " . $_POST['record_id'];
-    $db->update("crud", $data, $where);
-  } elseif (isset($_POST['delete'])) {
-    $record_id = $_POST['record_id'];
-    $where = "id = " . $record_id;
-    $db->delete("crud", $where);
-  }
-}
-
-$records = $db->select("crud");
-?>
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -39,10 +11,10 @@ $records = $db->select("crud");
 <div class="container">
     <h1 class="my-5 text-center">Welcome to CRUD Operation</h1>
     <button class="btn btn-success mb-4">
-        <a class="text-decoration-none text-white" href="addUser.php">Add User</a>
+        <a class="text-decoration-none text-white" href="../app/views/allUser.php">See All Users</a>
     </button>
     <!--  User Input  -->
-    <form method="post">
+    <form method="post" id="user_form">
         <div class="mb-3">
             <label>Name</label>
             <input type="text" name="name" class="form-control" placeholder="Enter your name" autocomplete="off"/>
@@ -65,35 +37,16 @@ $records = $db->select("crud");
     </form>
 
     <!-- Display User -->
-    <h2>Records</h2>
-    <table class="table">
-        <thead>
-        <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Name</th>
-            <th scope="col">Email</th>
-            <th scope="col">Mobile</th>
-            <th scope="col">Action</th>
-        </tr>
-        </thead>
-        <tbody>
-        <?php foreach ($records as $record): ?>
-            <tr>
-                <td><?= $record['id'] ?></td>
-                <td><?= $record['name'] ?></td>
-                <td><?= $record['email'] ?></td>
-                <td><?= $record['mobile'] ?></td>
-                <td>
-                    <form method="POST">
-                        <input type="hidden" name="record_id" value="<?= $record['id'] ?>">
-                        <button type="submit" name="update" class="btn btn-warning">Update</button>
-                        <button type="submit" name="delete" class="btn btn-danger">Delete</button>
-                    </form>
-                </td>
-            </tr>
-        <?php endforeach; ?>
-        </tbody>
-    </table>
+
 </div>
+
+<script>
+    document.getElementById("user_form").addEventListener("submit", function (e) {
+        e.preventDefault();
+        this.querySelectorAll('input').forEach(function (input) {
+            input.value = "";
+        })
+    })
+</script>
 </body>
 </html>

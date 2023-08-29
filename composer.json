@@ -1,0 +1,17 @@
+{
+    "name": "raafee/php_mvc",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app",
+            "App\\Controllers\\": "app/controllers/",
+            "App\\Models\\": "app/models/"
+        }
+    },
+    "authors": [
+        {
+            "name": "srafsan",
+            "email": "srafsan98@tutanota.com"
+        }
+    ],
+    "require": {}
+}
