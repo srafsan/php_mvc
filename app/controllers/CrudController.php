@@ -54,6 +54,11 @@ class CrudController
         $where = "id = " . $record_id;
         $this->db->delete("crud", $where);
     }
+		
+		public function getRecord($id): array|false
+		{
+			return $this->db->search("crud", $id);
+		}
 
     public function getRecords(): array|false
     {

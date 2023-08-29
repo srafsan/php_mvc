@@ -6,7 +6,7 @@ use PDOException;
 class Database{
   private string $db_host = "localhost";
   private string $db_user = "root";
-  private string $db_pass = "root";
+  private string $db_pass = "";
   private string $db_name = "crud_operations";
 
   private ?PDO $pdo = null;
@@ -86,6 +86,20 @@ class Database{
       return false;
     }
   }
+	
+	public function search($table, $id): false|array
+	{
+		try {
+			$stmt = $this->pdo->prepare("SELECT * FROM $table WHERE id = :id");
+			$stmt->bindParam(':id', $id, PDO::PARAM_INT);
+			$stmt->execute();
+			return $stmt->fetchAll(PDO::FETCH_ASSOC);
+		} catch (PDOException $e) {
+			$this->result[] = $e->getMessage();
+			return false;
+		}
+	}
+
 
   public function select($table): false|array
   {

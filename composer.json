@@ -13,5 +13,7 @@
             "email": "srafsan98@tutanota.com"
         }
     ],
-    "require": {}
+    "require": {
+      "ext-pdo": "*"
+    }
 }

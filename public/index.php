@@ -1,9 +1,16 @@
+<?php
+	require __DIR__ . "/../vendor/autoload.php";
+	$crudController = new \App\Controllers\CrudController();
+	$crudController->handleRequest();
+	$records = $crudController->getRecords();
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>PHP MVC</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 </head>
@@ -14,7 +21,7 @@
         <a class="text-decoration-none text-white" href="../app/views/allUser.php">See All Users</a>
     </button>
     <!--  User Input  -->
-    <form method="post" id="user_form">
+    <form method="post">
         <div class="mb-3">
             <label>Name</label>
             <input type="text" name="name" class="form-control" placeholder="Enter your name" autocomplete="off"/>
@@ -35,18 +42,6 @@
         </div>
         <button type="submit" class="btn btn-primary" name="create">Submit</button>
     </form>
-
-    <!-- Display User -->
-
 </div>
-
-<script>
-    document.getElementById("user_form").addEventListener("submit", function (e) {
-        e.preventDefault();
-        this.querySelectorAll('input').forEach(function (input) {
-            input.value = "";
-        })
-    })
-</script>
 </body>
 </html>

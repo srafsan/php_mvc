@@ -1,8 +1,8 @@
 <?php
-require __DIR__ . "/../../vendor/autoload.php";
-$crudController = new \App\Controllers\CrudController();
-$crudController->handleRequest();
-$records = $crudController->getRecords();
+	require __DIR__ . "/../../vendor/autoload.php";
+	$crudController = new \App\Controllers\CrudController();
+	$crudController->handleRequest();
+	$records = $crudController->getRecords();
 ?>
 
 <!doctype html>
@@ -18,8 +18,13 @@ $records = $crudController->getRecords();
     <title>Document</title>
 </head>
 <body>
-<h2>Records</h2>
-<table class="table">
+<div class="text-center my-5">
+    <h1 class="py-2">Records of all users</h1>
+    <button class="btn btn-primary">
+        <a href="../../public/index.php" class="text-white text-decoration-none">Go To Home</a>
+    </button>
+</div>
+<table class="table text-center">
     <thead>
     <tr>
         <th scope="col">ID</th>
@@ -30,23 +35,25 @@ $records = $crudController->getRecords();
     </tr>
     </thead>
     <tbody>
-    <?php
-    foreach ($records as $record): ?>
-        <tr>
-            <td><?= $record['id'] ?></td>
-            <td><?= $record['name'] ?></td>
-            <td><?= $record['email'] ?></td>
-            <td><?= $record['mobile'] ?></td>
-            <td>
-                <form method="POST">
-                    <input type="hidden" name="record_id" value="<?= $record['id'] ?>">
-                    <button type="submit" name="update" class="btn btn-warning">Update</button>
-                    <button type="submit" name="delete" class="btn btn-danger">Delete</button>
-                </form>
-            </td>
-        </tr>
-    <?php
-    endforeach; ?>
+		<?php
+			foreach ($records as $record): ?>
+          <tr>
+              <td><?= $record['id'] ?></td>
+              <td><?= $record['name'] ?></td>
+              <td><?= $record['email'] ?></td>
+              <td><?= $record['mobile'] ?></td>
+              <td>
+                  <form method="POST">
+                      <input type="hidden" name="record_id" value="<?= $record['id'] ?>">
+                      <button type="submit" name="update" class="btn btn-warning">
+                          <a class="text-decoration-none" href="../views/updateUser.php?update_id=<?php echo $record['id'];?>">Update</a>
+                      </button>
+                      <button type="submit" name="delete" class="btn btn-danger">Delete</button>
+                  </form>
+              </td>
+          </tr>
+			<?php
+			endforeach; ?>
     </tbody>
 </table>
 </body>
