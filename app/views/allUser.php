@@ -46,7 +46,7 @@
                   <form method="POST">
                       <input type="hidden" name="record_id" value="<?= $record['id'] ?>">
                       <button type="submit" name="update" class="btn btn-warning">
-                          <a class="text-decoration-none" href="../views/updateUser.php?update_id=<?php echo $record['id'];?>">Update</a>
+                          <a class="text-decoration-none" href="../views/updateUser.php?update_id=<?= $record['id'] ?>">Update</a>
                       </button>
                       <button type="submit" name="delete" class="btn btn-danger">Delete</button>
                   </form>

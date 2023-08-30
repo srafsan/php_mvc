@@ -6,7 +6,7 @@ use PDOException;
 class Database{
   private string $db_host = "localhost";
   private string $db_user = "root";
-  private string $db_pass = "";
+  private string $db_pass = "root";
   private string $db_name = "crud_operations";
 
   private ?PDO $pdo = null;
@@ -53,9 +53,8 @@ class Database{
     }
 
     try {
-       $stmt = $this->pdo->prepare($sql);
-       $stmt->execute($params);
-       $this->result[] = $stmt->rowCount();
+       $stmt = $this->pdo->exec($sql);
+       $this->result[] = $this->pdo->lastInsertId();
        return true;
     } catch (PDOException $e) {
        $this->result[] = $e->getMessage();

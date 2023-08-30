@@ -22,7 +22,7 @@
           integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <title>Update User</title>
 </head>
-<body>
+<body class="container">
 <div class="text-center my-5">
 	<h1 class="pb-2 text-uppercase">Update User Info</h1>
 	<button class="btn btn-success mb-4">
@@ -30,22 +30,23 @@
 	</button>
 </div>
 <form method="post">
+    <input type="hidden" name="record_id" value="<?= $record['id'] ?>">
     <div class="mb-3">
         <label>Name</label>
-        <input type="text" name="name" value="<?php echo $record['name'] ?>" class="form-control" placeholder="Enter your name" autocomplete="off"/>
+        <input type="text" name="name" value="<?= $record['name'] ?>" class="form-control" placeholder="Enter your name" autocomplete="off"/>
     </div>
     <div class="mb-3">
         <label>Email</label>
-        <input type="email" name="email" value="<?php echo $record['email'] ?>" class="form-control" placeholder="Enter your email" autocomplete="off"/>
+        <input type="email" name="email" value="<?= $record['email'] ?>" class="form-control" placeholder="Enter your email" autocomplete="off"/>
     </div>
     <div class="mb-3">
         <label>Mobile</label>
-        <input type="text" name="mobile" value="<?php echo $record['mobile'] ?>" class="form-control" placeholder="Enter your Mobile Number"
+        <input type="text" name="mobile" value="<?= $record['mobile'] ?>" class="form-control" placeholder="Enter your Mobile Number"
                autocomplete="off"/>
     </div>
     <div class="mb-3">
         <label>Password</label>
-        <input type="text" name="password" value="<?php echo $record['password'] ?>" class="form-control" placeholder="Enter your password" autocomplete="off"/>
+        <input type="text" name="password" value="<?= $record['password'] ?>" class="form-control" placeholder="Enter your password" autocomplete="off"/>
     </div>
     <button type="submit" class="btn btn-primary" name="update">Update</button>
 </form>

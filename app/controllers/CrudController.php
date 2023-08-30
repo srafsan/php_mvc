@@ -31,6 +31,7 @@ class CrudController
                   "email" => $_POST["email"],
                   "password" => $_POST["password"],
                 ];
+
                 $this->updateRecord($data, $_POST['record_id']);
             } elseif (isset($_POST['delete'])) {
                 $this->deleteRecord($_POST['record_id']);
