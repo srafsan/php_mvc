@@ -1,6 +1,8 @@
 <?php
-	require __DIR__ . "/../../vendor/autoload.php";
-	$crudController = new \App\Controllers\CrudController();
+	require "../../vendor/autoload.php";
+    use App\Controllers\CrudController;
+
+	$crudController = new CrudController();
 	$crudController->handleRequest();
 	
 	if(isset($_GET['update_id']))
@@ -26,27 +28,27 @@
 <div class="text-center my-5">
 	<h1 class="pb-2 text-uppercase">Update User Info</h1>
 	<button class="btn btn-success mb-4">
-		<a class="text-decoration-none text-white" href="../views/allUser.php">Home Page</a>
+		<a class="text-decoration-none text-white" href="../../public/">Home Page</a>
 	</button>
 </div>
 <form method="post">
     <input type="hidden" name="record_id" value="<?= $record['id'] ?>">
     <div class="mb-3">
         <label>Name</label>
-        <input type="text" name="name" value="<?= $record['name'] ?>" class="form-control" placeholder="Enter your name" autocomplete="off"/>
+        <input type="text" name="name" value="<?= $record['name'] ?>" class="form-control" placeholder="Enter your name" autocomplete="off" required/>
     </div>
     <div class="mb-3">
         <label>Email</label>
-        <input type="email" name="email" value="<?= $record['email'] ?>" class="form-control" placeholder="Enter your email" autocomplete="off"/>
+        <input type="email" name="email" value="<?= $record['email'] ?>" class="form-control" placeholder="Enter your email" autocomplete="off" required/>
     </div>
     <div class="mb-3">
         <label>Mobile</label>
         <input type="text" name="mobile" value="<?= $record['mobile'] ?>" class="form-control" placeholder="Enter your Mobile Number"
-               autocomplete="off"/>
+               autocomplete="off" required/>
     </div>
     <div class="mb-3">
         <label>Password</label>
-        <input type="text" name="password" value="<?= $record['password'] ?>" class="form-control" placeholder="Enter your password" autocomplete="off"/>
+        <input type="text" name="password" value="<?= $record['password'] ?>" class="form-control" placeholder="Enter your password" autocomplete="off" required/>
     </div>
     <button type="submit" class="btn btn-primary" name="update">Update</button>
 </form>
